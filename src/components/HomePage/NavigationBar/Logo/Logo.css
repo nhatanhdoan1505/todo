@@ -1,0 +1,22 @@
+.Logo{
+    margin-right: auto;
+    padding: 0.5rem;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+.Logo p {
+    color: white;
+    font-weight: 1000;
+    font-size: larger;
+    font-family: 'Lobster', cursive;
+}
+
+.Logo:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+}
+
+@media(max-width: 650px){
+    .Logo{
+        display: none;
+    }
+}

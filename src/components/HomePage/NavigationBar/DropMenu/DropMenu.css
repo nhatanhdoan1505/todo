@@ -1,0 +1,38 @@
+.DropMenu{
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 8px 6px -6px black;
+    padding: 1rem;
+}
+
+.Profile{
+    display: flex;
+    margin-bottom: 0.5rem;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    font-weight: 700;
+    margin-left: auto;
+}
+
+.Logout{
+    display: flex;
+    width: 50%;
+    justify-content: space-between;
+    align-items: center;
+    font-size: large;
+    font-weight: 700;  
+    margin-left: auto;
+}
+
+@media(max-width: 650px){
+    .DropMenu{
+        display: none;
+    }
+}
+

@@ -1,0 +1,13 @@
+.Image{
+    background-image: url(../../../assets/images/image.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    flex: 1;
+    border-radius: 8px;
+}
+
+@media (max-width: 700px){
+    .Image{
+        display: none;
+    }
+}

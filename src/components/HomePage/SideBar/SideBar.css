@@ -1,0 +1,11 @@
+.SideBar{
+    flex: 1;
+    background-color: #f4f4f2;
+    height: 100vh;
+}
+
+@media(max-width: 650px){
+    .SideBar{
+        display: none;
+    }
+}

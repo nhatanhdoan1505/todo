@@ -1,0 +1,27 @@
+.Search{
+    margin: 0px auto;
+}
+
+.Search input {
+    height: 60%;
+    background-color: #6a097d;
+    color: white;
+    width: 20rem;
+    border: none;
+    border-radius: 8px;
+    transition: cubic-bezier(1, 0, 0, 1) 0.5s;
+}
+
+.Search input:hover{    
+    transform: scale(1.05);
+}
+
+.Search input::placeholder{
+    color: white;
+}
+
+@media(max-width: 650px){
+    .Search{
+        display: none;
+    }
+}

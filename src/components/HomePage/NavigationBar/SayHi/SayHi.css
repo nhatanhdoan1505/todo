@@ -1,0 +1,30 @@
+.Sayhi{
+    color: white;
+    font-weight: 500;
+    font-size: large;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+.Sayhi p {
+    margin: 0.2rem;
+}
+
+.DropDown{
+    transition: cubic-bezier(1, 0, 0, 1) 0.5s; 
+}
+
+.DropDown:hover{
+    cursor: pointer;
+    transform: scale(1.5);
+}
+
+@media(max-width: 650px){
+    .Sayhi{
+        display: none;
+    }
+}
+
