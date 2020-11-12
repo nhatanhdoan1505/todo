@@ -2,6 +2,10 @@
     flex: 1;
     background-color: #f4f4f2;
     height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-top: 3.3rem;
+    padding-bottom: 1rem;
 }
 
 @media(max-width: 650px){

@@ -1,0 +1,33 @@
+.Item{
+    display: flex;
+    padding: 0.3rem;
+    align-items: center;
+    justify-content: space-between;
+    width: 65%;
+    margin: 1.5rem auto 0rem;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.5s;
+}
+
+.Item:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    background-color: white;
+}
+
+.Label {
+    color: black;
+    font-size: x-large;
+    font-weight: 500;
+}
+
+.Label:hover{
+    font-weight: 800;
+}
+
+.Number {
+    font-size: large;
+}
+
+.Icon{
+    font-size: x-large;
+}

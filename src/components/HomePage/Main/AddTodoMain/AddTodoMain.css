@@ -1,0 +1,13 @@
+.AddTodoMain{
+    margin-top: auto;
+    box-sizing: border-box;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.AddTodoMain input{
+    width: 70%;
+    text-align: center;
+}

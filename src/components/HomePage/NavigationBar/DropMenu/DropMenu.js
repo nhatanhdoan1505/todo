@@ -3,19 +3,13 @@ import './DropMenu.css';
 import Aux from '../../../../hoc/Axu';
 import { faAddressCard, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import DropMenuItem from './DropMenuItem/DropMenuItem';
 
 const dropMenu = (props) => (
     <Aux>
         <div className="DropMenu">
-            <div className="Profile">
-                <FontAwesomeIcon icon={faAddressCard}/>
-                <p>Profile</p>
-            </div>
-            <div className="Logout">
-                <FontAwesomeIcon icon={faSignOutAlt}/>
-                <p>Log out</p>
-            </div>
+            <DropMenuItem label="Profile" icon={faAddressCard}/>
+            <DropMenuItem label="Log Out" icon={faSignOutAlt} clicked={props.clickedSignOutButton}/>
         </div>
     </Aux>
 )

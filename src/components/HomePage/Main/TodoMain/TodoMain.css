@@ -1,0 +1,21 @@
+.TodoMain{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.TodoMainIcon{
+    margin-left: auto;
+    font-size: 0.8rem;
+    width: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: transparent;
+}
+
+.TodoMain:hover .TodoMainIcon{
+    color: black;
+}

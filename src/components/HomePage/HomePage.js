@@ -6,7 +6,7 @@ import WorkPlace from '../HomePage/WorkPlace/WorkPlace';
 const isLoggedIn = store.get("isLoggedIn");
 
 const logout = () => {
-    store.remove('isLoggedIn');
+    store.set('isLoggedIn', false);
     history.push("/account");
 }
 
@@ -15,12 +15,12 @@ const refeshPage = () => {
 }
 
 const homePage = () => {
-    if(isLoggedIn === undefined){   
+    if(isLoggedIn === false){   
         return history.push('/account');
     }
     return(
         <div className="HomePage">
-            <NavigationBar refeshPage={refeshPage}/>
+            <NavigationBar refeshPage={refeshPage} clickedSignOutButton={logout}/>
             <WorkPlace/>
         </div>
         

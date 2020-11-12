@@ -24,8 +24,8 @@ class NavigationBar extends Component {
                     <DrawToggle/>
                     <Logo clickedLogo={this.props.refeshPage}/>
                     <Search/>
-                    <SayHi clickedDropDown={this.showDropMenu}/>
-                    {this.state.showDropMenu ? <DropMenu/> : ""}
+                    <SayHi clickedDropDown={this.showDropMenu} name="Nhat Anh"/>
+                    {this.state.showDropMenu ? <DropMenu clickedSignOutButton={this.props.clickedSignOutButton}/> : ""}
                 </div>
             </Aux>
         )
