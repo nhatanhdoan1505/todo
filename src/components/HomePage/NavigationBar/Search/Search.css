@@ -1,14 +1,11 @@
-.Search{
-    margin: 0px auto;
-}
 
 .Search input {
     height: 60%;
-    background-color: #6a097d;
-    color: white;
-    width: 20rem;
-    border: none;
+    background-color: white;
+    border: 1px black solid;
     border-radius: 8px;
+    color: black;
+    width: 20rem;
     transition: cubic-bezier(1, 0, 0, 1) 0.5s;
 }
 
@@ -17,7 +14,7 @@
 }
 
 .Search input::placeholder{
-    color: white;
+    color: black;
 }
 
 @media(max-width: 650px){

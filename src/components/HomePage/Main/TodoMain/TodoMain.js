@@ -9,11 +9,11 @@ const todoMain = (props) => (
     <Aux>
         <div className="TodoMain">
             <input type="checkbox"/>
-            <label>{props.name}</label>
+            <label style={{fontFamily: "Dancing Script, cursive", fontWeight:"100"}}>{props.name}</label>
             <div className="TodoMainIcon">
                 <FontAwesomeIcon icon={faTrash}/>
                 <FontAwesomeIcon icon={faEdit}/>
-            </div>
+            </div>  
         </div>
     </Aux>
 )

@@ -5,13 +5,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 
-const addTodoMain = (props) => (
-    <Aux>
-        <div className="AddTodoMain">
-            <FontAwesomeIcon icon={faPlus}/>
-            <input type="text" placeholder="Add todo"/>
-        </div>
-    </Aux>
-)
-
-export default addTodoMain;
+function AddTodoMain(props) {
+    
+    return (
+        <Aux>
+            <div className="AddTodoMain">
+                <FontAwesomeIcon icon={faPlus}/>
+                <input type="text" placeholder="Add todo"/>
+            </div>
+        </Aux>
+    )
+    
+}
+export default AddTodoMain;

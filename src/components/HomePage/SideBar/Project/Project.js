@@ -10,7 +10,7 @@ import Todo from './Todos/Todo/Todo';
 const project = (props) => (
     <Aux>
         <Heading />
-        <TaskList color="#ea5455" label="HABIT">
+        <TaskList color="white" label="HABIT">
             <Todos>
                 <Todo label="Guitar" color="#ff7171"/>
                 <Todo label="Piano" color="#ffaa71"/>
@@ -18,7 +18,7 @@ const project = (props) => (
                 <Todo label="Tennis" color="#91d18b"/>
             </Todos>
         </TaskList>
-        <TaskList color="#056676" label="Learning">
+        <TaskList color="white" label="Learning">
             <Todos>
                 <Todo label="Node JS" color="#158467"/>
                 <Todo label="React JS" color="#056676"/>

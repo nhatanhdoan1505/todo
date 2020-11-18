@@ -10,4 +10,5 @@
 .AddTodoMain input{
     width: 70%;
     text-align: center;
+    height: 20px;
 }

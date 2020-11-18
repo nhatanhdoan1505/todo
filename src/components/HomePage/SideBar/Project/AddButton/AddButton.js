@@ -9,7 +9,7 @@ const addButton = (props) => (
     <Aux>
         <div className="AddButton">
             <div className="AddButtonIcon">
-                <FontAwesomeIcon icon={faPlus} color="#43658b"/>
+                <FontAwesomeIcon icon={faPlus} color="white"/>
             </div>
             <div className="AddButtonInputArea">
                 <input type="text" placeholder="Add Project"/>

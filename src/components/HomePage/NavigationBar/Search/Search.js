@@ -8,8 +8,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 const search = (props) => (
     <Aux>
         <div className="Search">
-                <FontAwesomeIcon icon={faSearch} color="white"/>
-                <input type="text" placeholder="Làm cho oai thôi chơ chưa tìm được mô"/>
+                <FontAwesomeIcon icon={faSearch} color="black"/>
+                <input type="text" placeholder="Name of Tasklist..."/>
         </div>
     </Aux>
 )

@@ -10,7 +10,7 @@ const sayHi = (props) => (
         <div className="Sayhi">
             <p>Hi, {props.name}</p>
             <div className="DropDown" onClick={props.clickedDropDown}>
-                <FontAwesomeIcon icon={faAngleDown} color="white"/>
+                <FontAwesomeIcon icon={faAngleDown} color="black"/>
             </div>
         </div>
     </Aux>

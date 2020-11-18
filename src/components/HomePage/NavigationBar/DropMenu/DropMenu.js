@@ -2,7 +2,6 @@ import React from 'react';
 import './DropMenu.css';
 import Aux from '../../../../hoc/Axu';
 import { faAddressCard, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import DropMenuItem from './DropMenuItem/DropMenuItem';
 
 const dropMenu = (props) => (

@@ -1,11 +1,11 @@
 .NavigationBar{
-    width: 100%;
+    width: 82%;
     height: 3rem;
-    background-color: #6a097d;
+    background-color: white;
     position: fixed;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: space-between;
     padding: 0.3rem;
 }
 

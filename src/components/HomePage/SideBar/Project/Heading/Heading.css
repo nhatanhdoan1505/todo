@@ -11,13 +11,13 @@
 .Heading:hover{
     cursor: pointer;
     transform: scale(1.1);
-    background-color: white;
+    background-color: #6a097d;
 }
 
 .LabelHeading {
-    color: black;
+    color: white;
     font-size: x-large;
-    font-weight: 500;
+    font-weight: 200;
 }
 
 .LabelHeading:hover{

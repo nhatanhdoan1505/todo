@@ -8,11 +8,11 @@ const heading = (props) => (
     <Aux>
         <div className="Heading">
             <div className="IconHeading">
-                <FontAwesomeIcon icon={faAngleDown} color="#43658b"/>
+                <FontAwesomeIcon icon={faAngleDown} color="white"/>
             </div>
             <p className="LabelHeading">Project</p>
             <div className="SmallAddButton">
-                <FontAwesomeIcon icon={faPlus} color="#43658b"/>
+                <FontAwesomeIcon icon={faPlus} color="white"/>
             </div>
         </div>
     </Aux>
