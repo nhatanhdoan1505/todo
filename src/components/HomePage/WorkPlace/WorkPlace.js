@@ -10,9 +10,6 @@ import { PureComponent } from 'react';
 
 
 class WorkPlace extends PureComponent {
-    state = {
-        addTasklist: false
-    };
 
     logout = () => {
         store.set('isLoggedIn', false);
@@ -23,17 +20,7 @@ class WorkPlace extends PureComponent {
         history.push('/account');
     };
     
-    addTasklistHandler = () => {
-        this.setState({
-            addTasklist: true
-        });
-    };
-
-    cancelAddTaskList = () => {
-        this.setState({
-            addTasklist: false
-        })
-    }
+    
 
     render() {
         return(
@@ -44,11 +31,7 @@ class WorkPlace extends PureComponent {
                         <NavigationBar 
                         refeshPage={this.refeshPage} 
                         clickedSignOutButton={this.logout}/>
-
-                        <Main 
-                        addTasklist={this.addTasklistHandler} 
-                        showAddList={this.state.addTasklist}
-                        cancelAddTaskList={this.cancelAddTaskList}/>
+                        <Main/>
                     </div>
                 </div>
             </Aux>

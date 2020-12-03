@@ -19,3 +19,25 @@
 .TodoMain:hover .TodoMainIcon{
     color: black;
 }
+
+.TodoMainCheckbox{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.TodoMainCheckbox:hover{
+    cursor: pointer;
+    transform: scale(1.02);
+    overflow-y: scroll;
+}
+
+.TodoMainCheckbox input[type='text']{
+    padding: 5px;
+    height: 15px;
+    background-color: white;
+    color: black;
+    border-bottom: 1px solid black;
+    border-radius: 0px;
+}
+

@@ -28,7 +28,7 @@ Button{
     border: 0.4px solid #d2d3c9;
     border-radius: 8px;
     font-size: larger;
-    font-weight: 800;
+    font-weight: 400;
     background-color: white;
     transition: linear 0.2s;
 }
@@ -46,7 +46,7 @@ Button{
     border: 0.4px solid #d2d3c9;
     border-radius: 8px;
     font-size: larger;
-    font-weight: 800;
+    font-weight: 400;
     background-color: white;
     transition: ease-in-out 0.2s;
 }

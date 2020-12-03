@@ -9,7 +9,7 @@ const sideBar = (props) => (
     <Aux>
         <div className="SideBar">
             <Item icon={faInbox} label="Inbox" number="3" color="white"/>
-            <Item icon={faCalendarMinus} label="Today" number="4" color="white"/>
+            <Item icon={faCalendarMinus} label="Share" number="4" color="white"/>
             <Item icon={faCalendarAlt} label="7 days" number="10" color="white"/>
             <Item icon={faTint} label="Important" number="5" color="white"/>
             <Project/>
