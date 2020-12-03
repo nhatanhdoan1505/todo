@@ -16,8 +16,7 @@ function TaskListMain(props) {
     const [taskListName, setTaskListName] = useState(props.name);
     const [changeTasklist, setChangeTasklist] = useState(false);
     const [list, setList] = useState([]);
-
-
+    const [todoAddition, setTodoAddition] = useState("");
 
     const changeHandler = (e) => {
         let value = e.target.value;
@@ -35,7 +34,7 @@ function TaskListMain(props) {
             }
          }
         fetchTodos();
-    },[props.count]);
+    },[loading]);
 
     function renameKey(obj, old_key, new_key) {    
             if (old_key !== new_key) {                   
@@ -65,11 +64,27 @@ function TaskListMain(props) {
         setTaskListTemporary(taskListName);
     }
 
+    const addTodoHandler = (id) => {
+        if(todoAddition === ""){
+            return;
+        }else{
+            setLoading(true);
+            axios.post(`/task_lists/${id}/todos`, JSON.stringify({"name": `${todoAddition}`}))
+            .then(res => {
+                setTodoAddition("");
+                setLoading(false);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        }
+    }
+
     return(
         <Aux>
             <div className="TaskListMain">
                 <div className="TaskListMainName">
-                    {changeTasklist ? <input type="text" style={{opacity:"1"}} value={taskListTemporary} onChange={changeHandler}/> : <h2 style={{opacity: "1"}}>{taskListName}</h2> } 
+                    {changeTasklist ? <input type="text" style={{opacity:"1"}} value={taskListTemporary} onChange={changeHandler}/> : <h2 style={{opacity: "1"}}>{taskListName}  <span style={{color:"black", fontSize:"10px"}}>({props.count})</span></h2> } 
                     <div className="TaskListMainNameIcon" >
                         {changeTasklist ? <FontAwesomeIcon icon={faCheck} onClick={submitChangeHandler}/> : <FontAwesomeIcon icon={faEdit} onClick={changeTaskListHandler}/>}
                         {changeTasklist ? <FontAwesomeIcon icon={faTimes} onClick={cancelChangeTaskListHandler}/> : <FontAwesomeIcon icon={faTimes} onClick={cancelChangeTaskListHandler} style={{display:"none"}}/>}
@@ -82,16 +97,21 @@ function TaskListMain(props) {
                                     check={todo.done}
                                     name={todo.name}
                                     id={todo.id}
-                                    key={todo.id}
+                                    key={props.id}
                                     tasklistId={props.id}/>
                         })
                     }
                 </div>
-                <AddTodoMain setData={props.setTodo} click={props.addTodo} value={props.value}/>
+                <AddTodoMain 
+                    setData={setTodoAddition} 
+                    click={() => addTodoHandler(props.id)}
+                    value={todoAddition}/>
                 <div className="DeleteBtn" >
-                    <FontAwesomeIcon icon={faTrashAlt} color="red" onClick={props.clickDeleteBtn}/>
+                    <FontAwesomeIcon 
+                        icon={faTrashAlt} 
+                        color="red" 
+                        onClick={props.clickDeleteBtn}/>
                 </div>
-                { props.loading ? <div className="SpinnerContainer"><Spinner/></div> : null}
             </div>
         </Aux>  
     )

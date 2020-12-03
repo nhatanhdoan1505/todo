@@ -157,12 +157,8 @@ function Main(props){
                         <TaskListMain 
                             name={tasklist.name} 
                             id={tasklist.id} 
-                            key={tasklist.id}
+                            key={tasklist.id+tasklist.name}
                             clickDeleteBtn={() => deleteTasklistHandler(tasklist.id)}
-                            loading={loading}
-                            setTodo={setTodoAddition}
-                            addTodo={() => addTodoHandler(tasklist.id)}
-                            value={todoAddition}
                             count={tasklist.todo_count}
                             />
                 </Col>
