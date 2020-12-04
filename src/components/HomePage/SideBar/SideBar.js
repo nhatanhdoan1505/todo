@@ -5,61 +5,16 @@ import Item from './Item/Item';
 import { faCalendarMinus, faInbox, faCalendarAlt, faTint, faStar } from '@fortawesome/free-solid-svg-icons';
 import Project from './Project/Project';
 import axios from '../../../axios/axios';
+import { propTypes } from 'react-bootstrap/esm/Image';
 
 function SideBar(props) {
-    const [shared, setShared] = useState([]);
-    const [share, setShare] = useState([]);
-    const [taskList, setTaskList] = useState([]);
-
-    useEffect(() => {
-        async function fetchData () {
-            try {
-                const request = await axios.request('/task_lists');
-                const taskList = request.data;
-                const share = [];
-                taskList.map(taskList => {
-                    if(taskList.share_count !== 0){
-                        share.push(taskList.id);
-                    }
-                })
-                setShare(share);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-    }, []);
-
-    useEffect(() => {
-        async function fetchData () {
-            try {
-                const request = await axios.request('/shared');
-                setShared(request.data)
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-    }, [])
-
-    useEffect(() => {
-        async function fetchData () {
-            try {
-                const request = await axios.request('/task_lists');
-                setTaskList(request.data);
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-    },[])
 
     return (
         <Aux>
             <div className="SideBar">
-                <Item icon={faStar} label="Todo" number={taskList.length} color="white"/>
-                <Item icon={faInbox} label="Inbox" number={shared.length} color="white"/>
-                <Item icon={faCalendarMinus} label="Share" number={share.length} color="white"/>
+                <Item icon={faStar} label="Todo" number={props.tasklists} color="white" onClick={props.clickTodo}/>
+                <Item icon={faInbox} label="Inbox" number={props.shared} color="white" onClick={props.clickInBox}/>
+                <Item icon={faCalendarMinus} label="Share" number={props.share} color="white" onClick={props.clickShare}/>
             </div>
         </Aux>
     )

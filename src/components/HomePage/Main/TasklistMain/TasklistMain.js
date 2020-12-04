@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../../../axios/axios';
 import Spinner from '../../../Welcome/Spinner/Spinner';
+import todo from '../../SideBar/Project/Todos/Todo/Todo';
 
 function TaskListMain(props) {
 
@@ -35,14 +36,6 @@ function TaskListMain(props) {
          }
         fetchTodos();
     },[loading]);
-
-    function renameKey(obj, old_key, new_key) {    
-            if (old_key !== new_key) {                   
-               Object.defineProperty(obj, new_key, 
-               Object.getOwnPropertyDescriptor(obj, old_key)); 
-               delete obj[old_key];  
-               } 
-        }
 
     const submitChangeHandler = ()  => {
         axios.patch(`/task_lists/${props.id}`, {"name":`${taskListTemporary}`})
@@ -80,11 +73,12 @@ function TaskListMain(props) {
         }
     }
 
+
     return(
         <Aux>
             <div className="TaskListMain">
                 <div className="TaskListMainName">
-                    {changeTasklist ? <input type="text" style={{opacity:"1"}} value={taskListTemporary} onChange={changeHandler}/> : <h2 style={{opacity: "1"}}>{taskListName}  <span style={{color:"black", fontSize:"10px"}}>({props.count})</span></h2> } 
+                    {changeTasklist ? <input type="text" style={{opacity:"1"}} value={taskListTemporary} onChange={changeHandler}/> : <h2 style={{opacity: "1"}}>{taskListName}  <span style={{color:"black", fontSize:"10px"}}>({todos.length})</span></h2> } 
                     <div className="TaskListMainNameIcon" >
                         {changeTasklist ? <FontAwesomeIcon icon={faCheck} onClick={submitChangeHandler}/> : <FontAwesomeIcon icon={faEdit} onClick={changeTaskListHandler}/>}
                         {changeTasklist ? <FontAwesomeIcon icon={faTimes} onClick={cancelChangeTaskListHandler}/> : <FontAwesomeIcon icon={faTimes} onClick={cancelChangeTaskListHandler} style={{display:"none"}}/>}
