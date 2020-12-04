@@ -1,48 +1,27 @@
 import React, {useEffect, useState} from 'react';
-import './Main.css';
 import Aux from '../../../hoc/Axu';
-import TaskListMain from './TasklistMain/TasklistMain';
+import TaskListMain from '../Main/TasklistMain/TasklistMain';
 import { Row, Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../../axios/axios';
+import taskList from '../SideBar/Project/TaskList/TaskList';
 
 
-function Main(props){
-
+function Inbox(props){
     const [taskLists, setTasklist] = useState([props.tasklists]);
-    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        async function fetchTaskList(){
+        async function fetchData () {
             try {
-                const request = await axios.request('/task_lists');
+                const request = await axios.request('/shared');
                 setTasklist(request.data);
             } catch (error) {
                 console.log(error);
             }
-        };
-        fetchTaskList();
-    }, [loading]);
-
-    useEffect(() => {
-        async function updateData() {
-            setTasklist(props.tasklists)
         }
-        updateData();
-    }, [props.tasklists])
-
-    const deleteTasklistHandler = (id) => {
-        setLoading(true);
-        axios.delete(`/task_lists/${id}`)
-        .then(res => {
-            setLoading(false);
-        })
-        .catch(err => {
-            console.log(err);
-        })
-    }
-
+        fetchData();
+    }, [])
 
     const list = taskLists.map(tasklist => {
         return <Col 
@@ -52,15 +31,14 @@ function Main(props){
                             name={tasklist.name} 
                             id={tasklist.id} 
                             key={tasklist.id+tasklist.name}
-                            clickDeleteBtn={() => deleteTasklistHandler(tasklist.id)}
-                            edit={true}/>
+                            edit={tasklist.is_write}
+                            user_id={tasklist.user_id}/>
                 </Col>
     })
 
     return (
         <Aux>
             <div className="MainDisplay">
-                {props.children}
                 <div className="TaskListArea">
                     <Row>
                         {list}
@@ -71,4 +49,4 @@ function Main(props){
     )
 }
 
-export default Main;
+export default Inbox;

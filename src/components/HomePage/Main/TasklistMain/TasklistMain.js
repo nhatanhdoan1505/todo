@@ -18,6 +18,8 @@ function TaskListMain(props) {
     const [changeTasklist, setChangeTasklist] = useState(false);
     const [list, setList] = useState([]);
     const [todoAddition, setTodoAddition] = useState("");
+    const [email, setEmail] = useState("");
+    const [partner, setPartner] = useState("");
 
     const changeHandler = (e) => {
         let value = e.target.value;
@@ -36,6 +38,43 @@ function TaskListMain(props) {
          }
         fetchTodos();
     },[loading]);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const request = await axios.request('/users');
+                const users = request.data;
+                users.map(user => {
+                    let id = user.id;
+                    if(id === props.user_id){
+                        setEmail(user.email);
+                    }
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const request = await axios.request('/users');
+                const users = request.data;
+                users.map(user => {
+                    let id = user.id;
+                    if(id === props.partner_id){
+                        setPartner(user.email);
+                    }
+                })
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    }, []);
+
 
     const submitChangeHandler = ()  => {
         axios.patch(`/task_lists/${props.id}`, {"name":`${taskListTemporary}`})
@@ -96,16 +135,40 @@ function TaskListMain(props) {
                         })
                     }
                 </div>
-                <AddTodoMain 
-                    setData={setTodoAddition} 
-                    click={() => addTodoHandler(props.id)}
-                    value={todoAddition}/>
-                <div className="DeleteBtn" >
-                    <FontAwesomeIcon 
-                        icon={faTrashAlt} 
-                        color="red" 
-                        onClick={props.clickDeleteBtn}/>
+                {props.edit ? (
+                <div>
+                <div>
+                    <AddTodoMain 
+                        setData={setTodoAddition} 
+                        click={() => addTodoHandler(props.id)}
+                        value={todoAddition}/>
+                    <div className="DeleteBtn" >
+                        <FontAwesomeIcon 
+                            icon={faTrashAlt} 
+                            color="red" 
+                            onClick={props.clickDeleteBtn}/>
+                    </div>
                 </div>
+                <h6 style={{opacity:"0"}}>You do not have edit permission</h6>
+                </div>) : (
+                <div>
+                <div style={{opacity:"0"}}>
+                    <AddTodoMain 
+                        setData={setTodoAddition} 
+                        click={() => addTodoHandler(props.id)}
+                        value={todoAddition}/>
+                    <div className="DeleteBtn" >
+                        <FontAwesomeIcon 
+                            icon={faTrashAlt} 
+                            color="red" 
+                            onClick={props.clickDeleteBtn}/>
+                    </div>
+                </div>
+                <h6 style={{opacity:"1"}}>You do not have edit permission</h6>
+                </div>)}
+                {props.user_id ? <h6 style={{textAlign:"center", color:"black"}}>Shared by {email}</h6> : null}
+                {props.partner_id ? <h6 style={{textAlign:"center", color:"black"}}>Sharing with {partner}</h6> : null}
+    
             </div>
         </Aux>  
     )

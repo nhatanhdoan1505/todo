@@ -13,6 +13,9 @@ import { faPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 import AddTaskListPanel from '../AddTaskListPanel/AddTaskListPanel';
 import axios from '../../../axios/axios';
 import taskList from '../SideBar/Project/TaskList/TaskList';
+import Inbox from '../Inbox/Inbox';
+import Share from '../Share/Share';
+
 
 function WorkPlace(props) {
 
@@ -26,6 +29,7 @@ function WorkPlace(props) {
     const [todoAddition, setTodoAddition] = useState("");
     const [shared, setShared] = useState([]);
     const [share, setShare] = useState([]);
+    const [controller, setController] = useState(0);
 
     useEffect(() => {
         async function fetchTaskList(){
@@ -44,7 +48,6 @@ function WorkPlace(props) {
             try {
                 const request = await axios.request('/task_lists');
                 setTaskLists(request.data);
-                console.log(taskList);
             } catch (error) {
                 console.log(error);
             }
@@ -60,7 +63,8 @@ function WorkPlace(props) {
                 const share = [];
                 taskList.map(taskList => {
                     if(taskList.share_count !== 0){
-                        share.push(taskList.id);
+                        let object = {id: taskList.id, name: taskList.name};
+                        share.push(object);
                     }
                 })
                 setShare(share);
@@ -95,15 +99,15 @@ function WorkPlace(props) {
     };
 
     const clickTodoHandler = () => {
-
+        setController(0);
     };
 
     const clickInboxHandler = () => {
-
+        setController(1);
     };
 
     const clickShareHandler = () => {
-
+        setController(2);
     };
     
     const setTaskListName = (taskList) => {
@@ -191,13 +195,12 @@ function WorkPlace(props) {
         setShowAddList(true);
     }
 
-
         return(
             <Aux>
                 <div className="WorkPlace">
                     <SideBar
                         clickTodo={clickTodoHandler}
-                        clickInbox={clickInboxHandler}
+                        clickInBox={clickInboxHandler}
                         clickShare={clickShareHandler}
                         tasklists={taskLists.length}
                         share={share.length}
@@ -206,7 +209,7 @@ function WorkPlace(props) {
                         <NavigationBar 
                             refeshPage={refeshPage} 
                             clickedSignOutButton={logout}/>
-                        <Main
+                        {controller === 0 ? (<Main
                             tasklists={taskLists}>
                             <Modal 
                                 showAddList={showAddList}
@@ -227,7 +230,9 @@ function WorkPlace(props) {
                                     icon={faShareSquare}/>
                             </div>
                         </Main>
-                    
+                    ) : null}
+                    {controller === 1 ? <Inbox tasklists={shared}/>  : null}
+                    {controller === 2 ? <Share tasklists={share}/> : null}
                     </div>
                 </div>
             </Aux>

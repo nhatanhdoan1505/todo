@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const item = (props) => (
     <Aux>
-        <div className="Item">
+        <div className="Item" onClick={props.click}>
             <div className="Icon">
             <FontAwesomeIcon icon={props.icon} color={props.color}/>
             </div>

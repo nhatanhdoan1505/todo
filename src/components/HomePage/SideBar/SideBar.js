@@ -12,9 +12,9 @@ function SideBar(props) {
     return (
         <Aux>
             <div className="SideBar">
-                <Item icon={faStar} label="Todo" number={props.tasklists} color="white" onClick={props.clickTodo}/>
-                <Item icon={faInbox} label="Inbox" number={props.shared} color="white" onClick={props.clickInBox}/>
-                <Item icon={faCalendarMinus} label="Share" number={props.share} color="white" onClick={props.clickShare}/>
+                <Item icon={faStar} label="Todo" number={props.tasklists} color="white" click={props.clickTodo}/>
+                <Item icon={faInbox} label="Inbox" number={props.shared} color="white" click={props.clickInBox}/>
+                <Item icon={faCalendarMinus} label="Share" number={props.share} color="white" click={props.clickShare}/>
             </div>
         </Aux>
     )
