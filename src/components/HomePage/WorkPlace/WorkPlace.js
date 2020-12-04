@@ -21,6 +21,7 @@ class WorkPlace extends PureComponent {
     };
     
     
+    
 
     render() {
         return(
