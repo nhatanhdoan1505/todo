@@ -31,7 +31,11 @@ class LoginForm extends Component {
         axios.post('/auth/sign_in', this.state)
         .then((res) => {
             this.setState({loading:false});
+            const header = res.headers;
             store.set('isLoggedIn', true);
+            store.set('access_token', header['access-token']);
+            store.set('client', header.client);
+            store.set('uid', header.uid);
             history.push({pathname:'/'});  
         })
         .catch((error) => {

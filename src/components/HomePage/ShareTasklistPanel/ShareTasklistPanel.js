@@ -2,29 +2,50 @@ import React from 'react';
 import Aux from '../../../hoc/Axu';
 import InputTaskListArea from '../AddTaskListPanel/InputTaskListArea/InputTaskListArea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
+import SubmitButton from '../AddTaskListPanel/SubmitButton/SubmitButton';
+import Spinner from '../../Welcome/Spinner/Spinner';
+import { useState } from 'react';
+import "./ShareTasklistPanel.css";
 
-function ShareTasklistPanel() {
-    <Aux>
+function ShareTasklistPanel(props) {
+
+    const [checked, setChecked] = useState(false);
+    let submit = false;
+
+    const setPermission = (e) => {
+        let value = e.target.value;
+        props.setData(value);
+    }
+
+    if(props.correctEmail && props.correctTaskList){
+        submit = true;
+    }
+
+    return(
+        <Aux>
         <div className="AddTaskListPanel ShareTaskListPanel">
                 <h2>Share Task List</h2>
                 {props.message ? <p style={{color:"red"}}>You need to enter tasklist name</p> : null}
-                <div>
-                    <InputTaskListArea name="User Email" setData={props.setTaskListName}/>
-                    {props.correctEmail ? <FontAwesomeIcon icon={faCheck} color="#00ff00"/> : <FontAwesomeIcon icon={faCheck} color="#00ff2a"/>}
+                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+                    <InputTaskListArea name="User Email" setData={props.setUserEmail}/>
+                    {props.correctEmail ? <FontAwesomeIcon icon={faCheck} color="#00ff00"/> : <FontAwesomeIcon icon={faTimes} color="#ff0000"/>}
                 </div>
-                <div>
-                    <InputTaskListArea name="TaskList Name" setData={props.setTodo1Name}/>
-                    {props.correctTaskList ? <FontAwesomeIcon icon={faCheck} color="#00ff00"/> : <FontAwesomeIcon icon={faCheck} color="#00ff2a"/>}
+                <div style={{display:"flex", justifyContent:"space-between", alignItems:"center"}}>
+                    <InputTaskListArea name="TaskList Name" setData={props.setTasklistName}/>
+                    {props.correctTaskList ? <FontAwesomeIcon icon={faCheck} color="#00ff00"/> : <FontAwesomeIcon icon={faTimes} color="#ff0000"/>}
                 </div>
-                <div>
+                <div style={{display:'flex', alignItems:"center", justifyContent:"space-between"}} onChange={setPermission.bind(this)}>
                     <label>Edit Permission</label>
-                    <input type="checkbox"/>
+                    <input type="radio" value="editor" name="name"/>Editor
+                    <input type="radio" value="watcher" name="name"/>Watcher
                 </div>
-                <SubmitButton click={props.submitHandler}/>
+                <button onClick={props.submitHandler} disabled={!submit} style={{width:"30%", padding:"5px", backgroundColor:"#5cb85c", color:"white", outline:"none", border:"none"}}>Submit</button>
                 { props.loading ? <div className="SpinnerContainer"><Spinner/></div> : null}
             </div>
     </Aux>
+
+    )
 }
 
 export default ShareTasklistPanel;

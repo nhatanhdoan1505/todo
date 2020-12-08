@@ -64,13 +64,14 @@ function Tasklist(props) {
                         user={user}
                         id={s.user_id}
                         taskListId={s.task_list_id}
-                        write={s.is_write}
-                        name={props.name}/>
+                        is_write={s.is_write}
+                        name={props.name}
+                        user_id={s.user_id}/>
         }) 
 
     return (
         <Aux>
-            <div style={{marginBottom:"15px", padding:"10px"}}> 
+            <div style={{marginBottom:"15px", padding:"10px", display:'flex', overflow:"scroll", maxWidth:"1200px"}}> 
                 {row}
             </div>
         </Aux>

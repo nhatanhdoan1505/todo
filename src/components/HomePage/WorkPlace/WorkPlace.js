@@ -15,7 +15,7 @@ import axios from '../../../axios/axios';
 import taskList from '../SideBar/Project/TaskList/TaskList';
 import Inbox from '../Inbox/Inbox';
 import Share from '../Share/Share';
-
+import ShareTaskListPanel from '../ShareTasklistPanel/ShareTasklistPanel';
 
 function WorkPlace(props) {
 
@@ -30,6 +30,15 @@ function WorkPlace(props) {
     const [shared, setShared] = useState([]);
     const [share, setShare] = useState([]);
     const [controller, setController] = useState(0);
+    const [showShareList, setShowShareList] = useState(false);
+    const [taskListName, setTaskListName] = useState("");
+    const [id, setId] = useState("");
+    const [editPermission, setEditPermission] = useState(false);
+    const [correctTaskList, setCorrectTaskList] = useState(false);
+    const [users, setUsers] = useState([]);
+    const [correctEmail, setCorrectEmail] = useState(false);
+    const [taskId, setTaskId] = useState("");
+    const [shareMessage, setShareMessage] = useState(false);
 
     useEffect(() => {
         async function fetchTaskList(){
@@ -73,7 +82,7 @@ function WorkPlace(props) {
             }
         }
         fetchData();
-    }, []);
+    }, [loading]);
 
     useEffect(() => {
         async function fetchData () {
@@ -87,10 +96,23 @@ function WorkPlace(props) {
         fetchData();
     }, [])
     
-    
+    useEffect(() => {
+        async function fetchData () {
+            try {
+                const request = await axios.request('/users');
+                setUsers(request.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        fetchData();
+    },[])
 
     const logout = () => {
         store.set('isLoggedIn', false);
+        store.set('access_token',"");
+        store.set('uid', "");
+        store.set('client', "");
         history.push("/account");
     };
     
@@ -110,7 +132,7 @@ function WorkPlace(props) {
         setController(2);
     };
     
-    const setTaskListName = (taskList) => {
+    const setTasklistsName = (taskList) => {
         setTasklistName(taskList.trim());
     }
 
@@ -126,6 +148,39 @@ function WorkPlace(props) {
         setTodoAddition(todo.trim());
     }
 
+    const setTaskListId = (taskList) => {
+        let tasklist = taskList;
+        if(correctTaskList === true){
+            setCorrectTaskList(false);
+        } 
+        taskLists.map(taskList => {
+            if (taskList.name === tasklist){
+                setCorrectTaskList(true);
+                setTaskId(taskList.id);
+                return;
+            }
+        })
+    }
+
+    const setUserEmail = (email) => {
+        if(correctEmail === true){
+            setCorrectEmail(false);
+        }
+        users.map(user => {
+            if(user.email === email){
+                setCorrectEmail(true);
+                setId(user.id);
+            }
+        })   
+    }
+
+    const setEdit = (permission) => {
+        if(permission === "editor"){
+            setEditPermission(true);
+        } else if(permission === "watcher"){
+            setEditPermission(false);
+        }
+    }
 
     const submitHandler = () => {
         setLoading(true);
@@ -196,9 +251,32 @@ function WorkPlace(props) {
     }
 
     const shareTasklistHandler = () => {
-        
+        setShowShareList(true);
     }
 
+    const cancelShareTaskListHandler = () => {
+        setLoading(false);
+        setMessage(false);
+        setShowShareList(false);
+        setCorrectTaskList(false);
+        setCorrectEmail(false);
+        setId("");
+        setEditPermission(false);
+        setTaskId("");
+    }
+
+    const submitShare = () => {
+        setLoading(true);
+        axios.post(`/task_lists/${taskId}/share`, {"user_id": `${id}`, "is_write":`${editPermission}`})
+        .then(res => {
+            setLoading(false);
+            setShowShareList(false);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+    }
+    
         return(
             <Aux>
                 <div className="WorkPlace">
@@ -208,7 +286,8 @@ function WorkPlace(props) {
                         clickShare={clickShareHandler}
                         tasklists={taskLists.length}
                         share={share.length}
-                        shared={shared.length}/>
+                        shared={shared.length}
+                        controller={controller}/>
                     <div className="ActionArea">
                         <NavigationBar 
                             refeshPage={refeshPage} 
@@ -216,15 +295,27 @@ function WorkPlace(props) {
                         {controller === 0 ? (<Main
                             tasklists={taskLists}>
                             <Modal 
-                                showAddList={showAddList}
-                                cancelAddTaskList={cancelAddTaskListHandler}>
+                                show={showAddList}
+                                cancel={cancelAddTaskListHandler}>
                             <AddTaskListPanel
-                                setTaskListName={setTaskListName}
+                                setTaskListName={setTasklistsName}
                                 setTodo1Name={setTodo1}
                                 setTodo2Name={setTodo2}
                                 submitHandler={submitHandler}
                                 loading={loading}
                                 message={message}/>
+                            </Modal>
+                            <Modal 
+                                show={showShareList}
+                                cancel={cancelShareTaskListHandler}>
+                            <ShareTaskListPanel
+                                setUserEmail={setUserEmail}
+                                setTasklistName={setTaskListId}
+                                submitHandler={submitShare}
+                                loading={loading}
+                                correctTaskList={correctTaskList}
+                                correctEmail={correctEmail}
+                                setData={setEdit}/>
                             </Modal>
                             <div className="TaskListOption">
                                 <FontAwesomeIcon 

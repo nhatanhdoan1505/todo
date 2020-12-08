@@ -8,7 +8,7 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 const sayHi = (props) => (
     <Aux>
         <div className="Sayhi">
-            <p>Hi, {props.name}</p>
+            <p>{props.name}</p>
             <div className="DropDown" onClick={props.clickedDropDown}>
                 <FontAwesomeIcon icon={faAngleDown} color="black"/>
             </div>

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import axios from '../../../../../axios/axios';
+import { set } from 'store';
 
 function Row(props) {
 
@@ -14,13 +15,14 @@ function Row(props) {
     const user = props.user;
 
     useEffect(() => {
-        async function patchData() {
+        async function putData() {
             try {
-                const request = await axios.patch(`/task_lists/${props.id}/share`, {'is_write': `${write}`});
+                const request = await axios.put(`/task_lists/${props.taskListId}/share/${props.user_id}`, {"share_task":{'is_write': `${write}`}});
             } catch (error) {
                 console.log(error);
             }
         }
+        putData();
     },[write])
 
     useEffect(() => {
@@ -37,13 +39,14 @@ function Row(props) {
 
     const deleteShare = () => {
         try {
-            const request = axios.delete(`task_list/${props.taskListId}/share`);
+            const request = axios.delete(`task_lists/${props.taskListId}/share/${props.user_id}`);
+            setDelete(true);
         } catch (error) {
             console.log(error);
         }
     }
 
-    let task = (<div className="TaskListMain" style={{width:"250px"}}>
+    let task = (<div className="TaskListMain" style={{width:"250px", margin:"10px"}}>
     <div className="TaskListMainName">
         <h2>{props.name}  <span style={{color:"black", fontSize:"10px"}}>({todos.length})</span></h2>
     </div>
