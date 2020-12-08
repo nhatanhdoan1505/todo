@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './AddTaskListPanel.css';
 import Aux from '../../../hoc/Axu';
 import InputTaskListArea from './InputTaskListArea/InputTaskListArea';
-import axios from '../../../axios/axios';
 import SubmitButton from './SubmitButton/SubmitButton';
 import Spinner from '../../Welcome/Spinner/Spinner';
 

@@ -3,14 +3,11 @@ import Aux from '../../../hoc/Axu';
 import InputTaskListArea from '../AddTaskListPanel/InputTaskListArea/InputTaskListArea';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import SubmitButton from '../AddTaskListPanel/SubmitButton/SubmitButton';
 import Spinner from '../../Welcome/Spinner/Spinner';
-import { useState } from 'react';
 import "./ShareTasklistPanel.css";
 
 function ShareTasklistPanel(props) {
 
-    const [checked, setChecked] = useState(false);
     let submit = false;
 
     const setPermission = (e) => {

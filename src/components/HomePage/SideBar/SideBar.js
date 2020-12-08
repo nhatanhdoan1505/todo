@@ -1,11 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './SideBar.css';
 import Aux from '../../../hoc/Axu';
 import Item from './Item/Item';
-import { faCalendarMinus, faInbox, faCalendarAlt, faTint, faStar } from '@fortawesome/free-solid-svg-icons';
-import Project from './Project/Project';
-import axios from '../../../axios/axios';
-import { propTypes } from 'react-bootstrap/esm/Image';
+import { faCalendarMinus, faInbox, faStar } from '@fortawesome/free-solid-svg-icons';
 
 function SideBar(props) {
     let op1 = true;

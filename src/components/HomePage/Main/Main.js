@@ -3,8 +3,6 @@ import './Main.css';
 import Aux from '../../../hoc/Axu';
 import TaskListMain from './TasklistMain/TasklistMain';
 import { Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../../axios/axios';
 
 

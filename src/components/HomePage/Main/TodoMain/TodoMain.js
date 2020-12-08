@@ -4,7 +4,6 @@ import Aux from '../../../../hoc/Axu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../../../axios/axios';
-import { set } from 'store';
 
 
 function TodoMain(props) {
@@ -17,7 +16,7 @@ function TodoMain(props) {
     
     useEffect(() => {
         async function updateDone() { 
-            const request = await axios.patch(`/task_lists/${props.tasklistId}/todos/${props.id}`, {"done": `${checked}`});
+            await axios.patch(`/task_lists/${props.tasklistId}/todos/${props.id}`, {"done": `${checked}`});
         }
         updateDone();
     }, [checked]);

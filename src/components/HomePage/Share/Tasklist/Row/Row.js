@@ -1,11 +1,9 @@
 import React, { useEffect } from 'react';
-import Aux from '../../../../../hoc/Axu';
 import TodoMain from '../../../Main/TodoMain/TodoMain';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt} from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import axios from '../../../../../axios/axios';
-import { set } from 'store';
 
 function Row(props) {
 
@@ -17,7 +15,7 @@ function Row(props) {
     useEffect(() => {
         async function putData() {
             try {
-                const request = await axios.put(`/task_lists/${props.taskListId}/share/${props.user_id}`, {"share_task":{'is_write': `${write}`}});
+                await axios.put(`/task_lists/${props.taskListId}/share/${props.user_id}`, {"share_task":{'is_write': `${write}`}});
             } catch (error) {
                 console.log(error);
             }
@@ -35,11 +33,11 @@ function Row(props) {
             }
          }
         fetchTodos();
-    },[]);
+    },[props.taskListId]);
 
     const deleteShare = () => {
         try {
-            const request = axios.delete(`task_lists/${props.taskListId}/share/${props.user_id}`);
+            axios.delete(`task_lists/${props.taskListId}/share/${props.user_id}`);
             setDelete(true);
         } catch (error) {
             console.log(error);

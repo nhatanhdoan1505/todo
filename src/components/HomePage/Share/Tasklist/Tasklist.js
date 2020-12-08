@@ -1,15 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import Aux from '../../../../hoc/Axu';
-import TodoMain from '../../Main/TodoMain/TodoMain';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEdit, faTrashAlt, faTimes, faCheck } from '@fortawesome/free-solid-svg-icons';
 import axios from '../../../../axios/axios';
 import Row from './Row/Row';
 
 function Tasklist(props) {
 
-    const [todos, setTodos] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [user, setUser] = useState({});
     const [share, setShare] = useState([]);
 

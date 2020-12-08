@@ -125,7 +125,7 @@ function TaskListMain(props) {
                             return <TodoMain 
                                     check={todo.done}
                                     name={todo.name}
-                                    id={todo.id}
+                                    id={todo.id + todo.name}
                                     key={props.id}
                                     tasklistId={props.id}/>
                         })

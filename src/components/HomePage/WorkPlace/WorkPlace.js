@@ -6,7 +6,6 @@ import Main from '../Main/Main';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import store from 'store';
 import history from '../../../history/history';
-import { PureComponent } from 'react';
 import Modal from '../Modal/Modal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons';

@@ -1,11 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import Aux from '../../../hoc/Axu';
 import TaskList from './Tasklist/Tasklist';
-import { Row, Col } from 'react-bootstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus, faShareSquare } from '@fortawesome/free-solid-svg-icons';
-import axios from '../../../axios/axios';
-import taskList from '../SideBar/Project/TaskList/TaskList';
+
 
 
 function Share(props){
@@ -29,9 +25,7 @@ function Share(props){
         <Aux>
             <div className="MainDisplay">
                 <div className="TaskListArea">
-                    <Row>
                         {lists}
-                    </Row>
                 </div>
             </div>
         </Aux>
