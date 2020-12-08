@@ -195,6 +195,10 @@ function WorkPlace(props) {
         setShowAddList(true);
     }
 
+    const shareTasklistHandler = () => {
+        
+    }
+
         return(
             <Aux>
                 <div className="WorkPlace">
@@ -227,7 +231,8 @@ function WorkPlace(props) {
                                     icon={faPlus} 
                                     onClick={addTasklistHandler}/>
                                 <FontAwesomeIcon 
-                                    icon={faShareSquare}/>
+                                    icon={faShareSquare}
+                                    onClick={shareTasklistHandler}/>
                             </div>
                         </Main>
                     ) : null}

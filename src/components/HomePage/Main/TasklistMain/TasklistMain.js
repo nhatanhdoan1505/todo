@@ -19,7 +19,10 @@ function TaskListMain(props) {
     const [list, setList] = useState([]);
     const [todoAddition, setTodoAddition] = useState("");
     const [email, setEmail] = useState("");
-    const [partner, setPartner] = useState("");
+    const [partner, setPartner] = useState(false);
+    const [sharePermission, setSharePermission] = useState(false);
+    const [partnerId, setPartnerId] = useState("");
+    const [user, setUser] = useState([]);
 
     const changeHandler = (e) => {
         let value = e.target.value;
@@ -43,6 +46,19 @@ function TaskListMain(props) {
         async function fetchData() {
             try {
                 const request = await axios.request('/users');
+                setUser(request.data);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+
+        fetchData();
+    },[])
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                const request = await axios.request('/users');
                 const users = request.data;
                 users.map(user => {
                     let id = user.id;
@@ -56,25 +72,6 @@ function TaskListMain(props) {
         }
         fetchData();
     }, []);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                const request = await axios.request('/users');
-                const users = request.data;
-                users.map(user => {
-                    let id = user.id;
-                    if(id === props.partner_id){
-                        setPartner(user.email);
-                    }
-                })
-            } catch (error) {
-                console.log(error);
-            }
-        }
-        fetchData();
-    }, []);
-
 
     const submitChangeHandler = ()  => {
         axios.patch(`/task_lists/${props.id}`, {"name":`${taskListTemporary}`})
@@ -111,7 +108,6 @@ function TaskListMain(props) {
             })
         }
     }
-
 
     return(
         <Aux>
@@ -167,7 +163,7 @@ function TaskListMain(props) {
                 <h6 style={{opacity:"1"}}>You do not have edit permission</h6>
                 </div>)}
                 {props.user_id ? <h6 style={{textAlign:"center", color:"black"}}>Shared by {email}</h6> : null}
-                {props.partner_id ? <h6 style={{textAlign:"center", color:"black"}}>Sharing with {partner}</h6> : null}
+                {partner ? <h6 style={{textAlign:"center", color:"black"}}>Sharing with {partner}</h6> : null}
     
             </div>
         </Aux>  
